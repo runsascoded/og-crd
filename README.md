@@ -84,6 +84,26 @@ const meta = await fetchOgMeta("https://example.com")
 
 The main entry point (`@rdub/og-card`) also re-exports these.
 
+### GitHub-compatible card HTML
+
+Generate `<table>`-based card HTML for embedding in GitHub READMEs:
+
+```ts
+import { fetchOgMeta, renderCard, renderCardRow, renderCardGrid } from "@rdub/og-card/core"
+
+const meta = await fetchOgMeta("https://github.com/runsascoded/apvd")
+renderCard("https://github.com/runsascoded/apvd", meta, { cleanGitHub: true })
+// → <td width="400" valign="top"><a href="..."><img ...><br><b>apvd</b>...</a></td>
+
+// Wrap multiple cards in a <table><tr> row
+renderCardRow([{ url, meta }, ...], { width: 400 })
+
+// Multi-row grid
+renderCardGrid(cards, { cols: 2, cleanGitHub: true })
+```
+
+`cleanGitHubDescription` strips boilerplate like "Contribute to ... on GitHub" from OG descriptions.
+
 ### `useOgMeta` hook
 
 React hook wrapping `fetchOgMeta` with caching:
@@ -118,6 +138,35 @@ og-card https://a.com https://b.com --json
 # From stdin
 echo "https://example.com" | og-card --json
 ```
+
+### `og-card md` — GitHub-compatible markdown cards
+
+```sh
+# Single card as <table>
+og-card md https://github.com/owner/repo
+
+# Row of cards
+og-card md url1 url2 --row
+
+# Grid (2 per row)
+og-card md url1 url2 url3 url4 --cols 2
+
+# Markdown image link format
+og-card md https://github.com/owner/repo -f image
+
+# Clean GitHub boilerplate from titles/descriptions
+og-card md url1 url2 --github
+```
+
+| Flag | Description |
+|------|-------------|
+| `-c, --cols <n>` | Cards per row (default: 2) |
+| `-f, --format <type>` | `table` (default), `image`, `html` |
+| `-r, --row` | Wrap in `<table><tr>` |
+| `-w, --width <px>` | Card width (default: 400) |
+| `--no-desc` | Omit description |
+| `--no-title` | Omit title |
+| `-g, --github` | Strip GitHub boilerplate |
 
 ## CSS customization
 
