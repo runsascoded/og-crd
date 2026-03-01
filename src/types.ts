@@ -1,5 +1,9 @@
 import { ReactNode } from "react"
 
+import type { ProxyFn } from "./core"
+
+export type { OgMeta, ProxyFn } from "./core"
+
 export interface OgCardProps {
   thumbnail?: string | ReactNode
   title: string
@@ -10,8 +14,6 @@ export interface OgCardProps {
   aspectRatio?: number
   hoverEffect?: "scale" | "shadow" | "both" | "none"
 }
-
-export type ProxyFn = (url: string) => string
 
 export interface OgCardFromUrlProps {
   url: string
@@ -29,12 +31,4 @@ export interface CardRowProps {
   children: ReactNode
   className?: string
   gap?: number | string
-}
-
-export interface OgMeta {
-  title?: string
-  description?: string
-  image?: string
-  siteName?: string
-  url?: string
 }

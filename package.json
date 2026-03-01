@@ -5,11 +5,18 @@
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "og-card": "dist/cli.js"
+  },
   "exports": {
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
+    },
+    "./core": {
+      "import": "./dist/core.js",
+      "types": "./dist/core.d.ts"
     },
     "./style.css": "./dist/style.css"
   },
@@ -28,6 +35,7 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
+    "@types/node": "^25.3.3",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
