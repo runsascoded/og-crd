@@ -1,22 +1,22 @@
-# @rdub/og-card
+# og-crd
 
 React components for rendering Open Graph preview cards, plus a CLI and core library for fetching/parsing OG metadata.
 
 ## Install
 
 ```sh
-pnpm add @rdub/og-card
+pnpm add og-crd
 ```
 
-Peer dependencies: `react >= 18`, `react-dom >= 18` (only needed for components; `@rdub/og-card/core` and the CLI work without React).
+Peer dependencies: `react >= 18`, `react-dom >= 18` (only needed for components; `og-crd/core` and the CLI work without React).
 
 ## Components
 
 Import components and their stylesheet:
 
 ```tsx
-import { OgCard, OgCardFromUrl, CardRow } from "@rdub/og-card"
-import "@rdub/og-card/style.css"
+import { OgCard, OgCardFromUrl, CardRow } from "og-crd"
+import "og-crd/style.css"
 ```
 
 ### `OgCard`
@@ -76,20 +76,20 @@ Horizontal scrolling row for multiple cards.
 For use outside React (Node scripts, build tools, etc.):
 
 ```ts
-import { fetchOgMeta, parseOgTags } from "@rdub/og-card/core"
+import { fetchOgMeta, parseOgTags } from "og-crd/core"
 
 const meta = await fetchOgMeta("https://example.com")
 // { title, description, image, siteName, url }
 ```
 
-The main entry point (`@rdub/og-card`) also re-exports these.
+The main entry point (`og-crd`) also re-exports these.
 
 ### GitHub-compatible card HTML
 
 Generate `<table>`-based card HTML for embedding in GitHub READMEs:
 
 ```ts
-import { fetchOgMeta, renderCard, renderCardRow, renderCardGrid } from "@rdub/og-card/core"
+import { fetchOgMeta, renderCard, renderCardRow, renderCardGrid } from "og-crd/core"
 
 const meta = await fetchOgMeta("https://github.com/runsascoded/apvd")
 renderCard("https://github.com/runsascoded/apvd", meta, { cleanGitHub: true })

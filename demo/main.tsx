@@ -8,7 +8,7 @@ function App() {
   return (
     <div style={{ background: "#1a1a2e", minHeight: "100vh", padding: "2rem", fontFamily: "system-ui, sans-serif" }}>
       <div style={{ maxWidth: 900, margin: "0 auto" }}>
-        <h1 style={{ color: "#fff", marginBottom: "2rem" }}>@rdub/og-card demo</h1>
+        <h1 style={{ color: "#fff", marginBottom: "2rem" }}>og-crd demo</h1>
 
         <h2 style={{ color: "#ccc" }}>Static card with thumbnail</h2>
         <div style={{ maxWidth: 360, marginBottom: "2rem" }}>
