@@ -8,7 +8,7 @@ React components for rendering Open Graph preview cards, plus a CLI and core lib
 pnpm add @rdub/og-card
 ```
 
-Peer dependencies: `react >= 18`, `react-dom >= 18`.
+Peer dependencies: `react >= 18`, `react-dom >= 18` (only needed for components; `@rdub/og-card/core` and the CLI work without React).
 
 ## Components
 
@@ -104,7 +104,7 @@ renderCardGrid(cards, { cols: 2, cleanGitHub: true })
 
 `cleanGitHubDescription` strips boilerplate like "Contribute to ... on GitHub" from OG descriptions.
 
-### `useOgMeta` hook
+## `useOgMeta` hook
 
 React hook wrapping `fetchOgMeta` with caching:
 
@@ -167,6 +167,8 @@ og-card md url1 url2 --github
 | `--no-desc` | Omit description |
 | `--no-title` | Omit title |
 | `-g, --github` | Strip GitHub boilerplate |
+| `-p, --proxy <url>` | CORS proxy prefix |
+| `-P, --parallel <n>` | Max concurrent fetches (default: 5) |
 
 ## CSS customization
 
