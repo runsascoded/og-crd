@@ -2,8 +2,11 @@
   "name": "og-crd",
   "region": "us-east-1",
   "allow": [
-    "github.com",
-    "*.github.com"
+    { "domain": "github.com", "paths": [
+      "/runsascoded/*",
+      "/hudcostreets/*",
+      "/HackJerseyCity/*"
+    ]}
   ],
   "cors": {
     "origins": ["https://og-crd.rbw.sh", "http://localhost:*"],
