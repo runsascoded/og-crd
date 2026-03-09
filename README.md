@@ -2,12 +2,46 @@
 
 [![npm](https://img.shields.io/npm/v/og-crd)](https://www.npmjs.com/package/og-crd)
 
-OG meta preview cards for **web** and **markdown**:
+OG meta preview cards for **web** and **markdown**.
 
-- **[React components](#components)** — interactive cards with hover effects, favicons, and automatic GitHub title/description cleaning ([demo][demo])
-- **[CLI](#cli)** — generate `<table>`-based HTML cards for [GitHub READMEs](#og-card-md--github-compatible-markdown-cards), or fetch OG metadata as JSON
+### Markdown — `og-card md`
 
-[demo]: https://og-crd.rbw.sh
+Generate `<table>`-based HTML cards for GitHub READMEs, releases, and issues:
+
+<table><tr>
+<td width="300" valign="top">
+<a href="https://github.com/runsascoded/img-voronoi">
+<img src="https://repository-images.githubusercontent.com/1158873364/ada3e7a8-9e10-451a-8627-57561e5b2934" alt="img-voronoi" width="300">
+<br><b>img-voronoi</b>
+<br><sub>Interactive Voronoi diagram visualization from images, with animated site physics and a Rust CLI for video rendering.</sub>
+</a>
+</td>
+<td width="300" valign="top">
+<a href="https://github.com/hudcostreets/nj-crashes">
+<img src="https://repository-images.githubusercontent.com/477882967/cd7a3b2e-9104-4607-907e-14b602c4ae02" alt="nj-crashes" width="300">
+<br><b>nj-crashes</b>
+<br><sub>Analysis and visualization of traffic crash data published by NJ DOT and NJ State Police</sub>
+</a>
+</td>
+</tr></table>
+
+```sh
+og-card md https://github.com/runsascoded/img-voronoi https://github.com/hudcostreets/nj-crashes \
+  --github -w 300
+```
+
+### Web — React components ([demo][demo])
+
+<a href="https://og-crd.rbw.sh"><img src="demo/screenshot.png" alt="demo screenshot" width="600"></a>
+
+Interactive cards with hover effects, favicons, and automatic GitHub title/description cleaning.
+
+```tsx
+import { OgCardFromUrl } from "og-crd"
+import "og-crd/style.css"
+
+<OgCardFromUrl url="https://github.com/runsascoded/img-voronoi" proxy="https://corsproxy.io/?" />
+```
 
 ## Install
 
@@ -146,33 +180,9 @@ og-card https://a.com https://b.com --json
 echo "https://example.com" | og-card --json
 ```
 
-### `og-card md` — GitHub-compatible markdown cards
+### `og-card md`
 
-Generate `<table>`-based HTML that renders as cards in GitHub READMEs:
-
-```sh
-og-card md https://github.com/runsascoded/img-voronoi https://github.com/hudcostreets/nj-crashes \
-  --github -w 300
-```
-
-<table><tr>
-<td width="300" valign="top">
-<a href="https://github.com/runsascoded/img-voronoi">
-<img src="https://repository-images.githubusercontent.com/1158873364/ada3e7a8-9e10-451a-8627-57561e5b2934" alt="img-voronoi" width="300">
-<br><b>img-voronoi</b>
-<br><sub>Interactive Voronoi diagram visualization from images, with animated site physics and a Rust CLI for video rendering.</sub>
-</a>
-</td>
-<td width="300" valign="top">
-<a href="https://github.com/hudcostreets/nj-crashes">
-<img src="https://repository-images.githubusercontent.com/477882967/cd7a3b2e-9104-4607-907e-14b602c4ae02" alt="nj-crashes" width="300">
-<br><b>nj-crashes</b>
-<br><sub>Analysis and visualization of traffic crash data published by NJ DOT and NJ State Police</sub>
-</a>
-</td>
-</tr></table>
-
-4-column grid:
+4-column grid example:
 
 ```sh
 og-card md https://github.com/HackJerseyCity/jc-taxes https://github.com/hudcostreets/path \
@@ -257,7 +267,5 @@ pnpm build        # Library build → dist/
 pnpm build:watch  # Rebuild on changes
 pnpm demo:build   # Production demo build → demo/dist/
 ```
-
-[Live demo →][demo]
 
 [demo]: https://og-crd.rbw.sh
