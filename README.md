@@ -40,7 +40,7 @@ Interactive cards with hover effects, favicons, and automatic GitHub title/descr
 import { OgCardFromUrl } from "og-crd"
 import "og-crd/style.css"
 
-<OgCardFromUrl url="https://github.com/runsascoded/img-voronoi" proxy="https://corsproxy.io/?" />
+<OgCardFromUrl url="https://github.com/runsascoded/img-voronoi" proxy="https://my-proxy.example.com/?url=" />
 ```
 
 ## Install
@@ -92,14 +92,18 @@ Fetches OG metadata from a URL and renders an `OgCard`. Shows a skeleton loading
 
 ```tsx
 <OgCardFromUrl
-  url="https://github.com/runsascoded/og-card"
-  proxy="https://corsproxy.io/?"
+  url="https://github.com/runsascoded/img-voronoi"
+  proxy="https://my-proxy.example.com/?url="
 />
 ```
 
-A `proxy` is needed in browsers due to CORS. Pass a prefix string (the target URL is appended URL-encoded) or a `(url: string) => string` function.
+A `proxy` is needed in browsers due to CORS. Pass a prefix string (the target URL is appended URL-encoded) or a `(url: string) => string` function. See [`cors-prxy`] for an easy-to-deploy per-project Lambda proxy.
+
+GitHub URLs are automatically cleaned: `OgCardFromUrl` strips "GitHub - owner/repo:" title prefixes and "Contribute to … on GitHub" description boilerplate.
 
 All `OgCard` props (`title`, `description`, `thumbnail`, etc.) can be passed as overrides.
+
+[`cors-prxy`]: https://github.com/runsascoded/cors-prxy
 
 ### `CardRow`
 
@@ -143,7 +147,7 @@ renderCardRow([{ url, meta }, ...], { width: 400 })
 renderCardGrid(cards, { cols: 2, cleanGitHub: true })
 ```
 
-`cleanGitHubDescription` strips boilerplate like "Contribute to ... on GitHub" from OG descriptions.
+`cleanGitHubTitle` and `cleanGitHubDescription` strip GitHub boilerplate from OG metadata (title prefixes like "GitHub - owner/repo:", description suffixes like "Contribute to … on GitHub"). These are applied automatically by `OgCardFromUrl` for `github.com` URLs.
 
 ## `useOgMeta` hook
 
@@ -258,6 +262,36 @@ Override CSS custom properties on `.og-card`:
   --og-card-transition: 0.2s ease;
 }
 ```
+
+## CORS proxy
+
+`OgCardFromUrl` fetches pages client-side, so a CORS proxy is needed. This project uses [`cors-prxy`] to deploy a per-project Lambda proxy with a strict allowlist:
+
+```json
+{
+  "name": "og-crd",
+  "allow": [
+    { "domain": "github.com", "paths": [
+      "/runsascoded/*",
+      "/hudcostreets/*",
+      "/HackJerseyCity/*"
+    ]}
+  ],
+  "cors": {
+    "origins": ["https://og-crd.rbw.sh", "http://localhost:*"]
+  }
+}
+```
+
+```sh
+pnpm add -D cors-prxy
+cors-prxy deploy   # creates Lambda + Function URL
+cors-prxy status   # shows endpoint URL
+```
+
+The endpoint URL is set as `VITE_CORS_PROXY_URL` (env var for local dev, [GitHub repo variable][gh-vars] for CI builds).
+
+[gh-vars]: https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables
 
 ## Development
 
