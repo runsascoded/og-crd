@@ -45,6 +45,8 @@ jobs:
 
       - name: Build demo
         run: pnpm demo:build
+        env:
+          VITE_CORS_PROXY_URL: ${{ vars.VITE_CORS_PROXY_URL }}
 
       - name: Setup Pages
         if: github.ref == 'refs/heads/main'
