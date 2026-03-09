@@ -1,5 +1,7 @@
 # og-crd
 
+[![npm](https://img.shields.io/npm/v/og-crd)](https://www.npmjs.com/package/og-crd)
+
 OG meta preview cards for **web** and **markdown**:
 
 - **[React components](#components)** — interactive cards with hover effects, favicons, and automatic GitHub title/description cleaning ([demo][demo])
