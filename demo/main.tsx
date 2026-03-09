@@ -2,7 +2,7 @@ import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { OgCardFromUrl, CardRow } from "../src"
 
-const PROXY = "https://corsproxy.io/?"
+const PROXY = "https://haekduaiivcsjo7k5z4d4yzohy0klaea.lambda-url.us-east-1.on.aws/?url="
 
 const apps = [
   "https://github.com/runsascoded/img-voronoi",

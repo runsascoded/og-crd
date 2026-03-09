@@ -1,0 +1,15 @@
+{
+  "name": "og-crd",
+  "region": "us-east-1",
+  "allow": [
+    "github.com",
+    "*.github.com"
+  ],
+  "cors": {
+    "origins": ["https://og-crd.rbw.sh", "http://localhost:*"],
+    "maxAge": 86400
+  },
+  "cache": {
+    "ttl": 300
+  }
+}
