@@ -58,10 +58,10 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "cors-prxy": "https://github.com/runsascoded/cors-prxy#92459a8de80d85fc43b59596d1397d3996f8be46",
     "sass-embedded": "^1.77.8",
     "typescript": "^5.5.3",
     "vite": "^5.4.11",
-    "vite-plugin-dts": "^4.0.0",
-    "cors-prxy": "https://github.com/runsascoded/cors-prxy#0763c4ab226b3a222ab39079c7f7a4fb28389cc8"
+    "vite-plugin-dts": "^4.0.0"
   }
 }
