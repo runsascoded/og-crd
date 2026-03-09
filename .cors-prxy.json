@@ -1,6 +1,6 @@
 {
   "name": "og-crd",
-  "region": "us-east-1",
+  "runtime": "cloudflare",
   "allow": [
     { "domain": "github.com", "paths": [
       "/runsascoded/*",
