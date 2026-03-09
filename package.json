@@ -1,6 +1,6 @@
 {
   "name": "og-crd",
-  "version": "0.0.2-dist.cf12972",
+  "version": "0.0.2-dist.0cc6163",
   "type": "module",
   "main": "./index.cjs",
   "module": "./index.js",
