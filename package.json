@@ -27,6 +27,7 @@
     "build": "tsc -b && vite build",
     "clean": "rm -rf node_modules/.vite dist",
     "build:watch": "vite build --watch",
+    "demo:build": "vite build --config demo/vite.config.ts demo",
     "dev": "vite",
     "tc": "tsc"
   },

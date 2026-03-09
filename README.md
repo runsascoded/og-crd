@@ -141,21 +141,75 @@ echo "https://example.com" | og-card --json
 
 ### `og-card md` — GitHub-compatible markdown cards
 
+Generate `<table>`-based HTML that renders as cards in GitHub READMEs:
+
 ```sh
-# Single card as <table>
-og-card md https://github.com/owner/repo
+og-card md https://github.com/runsascoded/img-voronoi https://github.com/hudcostreets/nj-crashes \
+  --github -w 300
+```
 
-# Row of cards
-og-card md url1 url2 --row
+<table><tr>
+<td width="300" valign="top">
+<a href="https://github.com/runsascoded/img-voronoi">
+<img src="https://repository-images.githubusercontent.com/1158873364/ada3e7a8-9e10-451a-8627-57561e5b2934" alt="img-voronoi" width="300">
+<br><b>img-voronoi</b>
+<br><sub>Interactive Voronoi diagram visualization from images, with animated site physics and a Rust CLI for video rendering.</sub>
+</a>
+</td>
+<td width="300" valign="top">
+<a href="https://github.com/hudcostreets/nj-crashes">
+<img src="https://repository-images.githubusercontent.com/477882967/cd7a3b2e-9104-4607-907e-14b602c4ae02" alt="nj-crashes" width="300">
+<br><b>nj-crashes</b>
+<br><sub>Analysis and visualization of traffic crash data published by NJ DOT and NJ State Police</sub>
+</a>
+</td>
+</tr></table>
 
-# Grid (2 per row)
-og-card md url1 url2 url3 url4 --cols 2
+4-column grid:
 
-# Markdown image link format
-og-card md https://github.com/owner/repo -f image
+```sh
+og-card md https://github.com/HackJerseyCity/jc-taxes https://github.com/hudcostreets/path \
+  https://github.com/hudcostreets/hudson-transit https://github.com/runsascoded/apvd \
+  --github -w 200 --cols 4
+```
 
-# Clean GitHub boilerplate from titles/descriptions
-og-card md url1 url2 --github
+<table><tr>
+<td width="200" valign="top">
+<a href="https://github.com/HackJerseyCity/jc-taxes">
+<img src="https://repository-images.githubusercontent.com/1153088407/26ae854c-725b-4ca3-819e-cad30586484a" alt="jc-taxes" width="200">
+<br><b>jc-taxes</b>
+<br><sub>3D map of Jersey City property tax payments</sub>
+</a>
+</td>
+<td width="200" valign="top">
+<a href="https://github.com/hudcostreets/path">
+<img src="https://repository-images.githubusercontent.com/802509466/c756c846-9634-4be3-8ea6-c80f1577a92d" alt="path" width="200">
+<br><b>path</b>
+<br><sub>PATH train ridership stats</sub>
+</a>
+</td>
+<td width="200" valign="top">
+<a href="https://github.com/hudcostreets/hudson-transit">
+<img src="https://repository-images.githubusercontent.com/565013703/0dca3713-5c73-4a5f-bbbf-34abf5e8beb7" alt="hudson-transit" width="200">
+<br><b>hudson-transit</b>
+<br><sub>Hudson River crossing stats and analysis, from NYMTC's &quot;Hub Bound Travel&quot; reports</sub>
+</a>
+</td>
+<td width="200" valign="top">
+<a href="https://github.com/runsascoded/apvd">
+<img src="https://opengraph.githubassets.com/7edc140c1d8001aac35706a3509456648d279accf7a8b42873d7f3f66f71f9d9/runsascoded/apvd" alt="apvd" width="200">
+<br><b>apvd</b>
+<br><sub>Area-Proportional Venn Diagrams</sub>
+</a>
+</td>
+</tr></table>
+
+```sh
+# More examples
+og-card md url1 url2 --row           # Force single-row layout
+og-card md url1 -f image             # Markdown image link: [![title](img)](url)
+og-card md url1 -f html              # Raw <td> cells (no <table> wrapper)
+og-card md url1 --no-desc --no-title # Image only
 ```
 
 | Flag | Description |
@@ -194,4 +248,9 @@ Override CSS custom properties on `.og-card`:
 pnpm dev          # Demo site at localhost:3847
 pnpm build        # Library build → dist/
 pnpm build:watch  # Rebuild on changes
+pnpm demo:build   # Production demo build → demo/dist/
 ```
+
+[Live demo →][demo]
+
+[demo]: https://og-crd.rbw.sh
