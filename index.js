@@ -1,93 +1,94 @@
-import { fetchOgMeta as N } from "./core.js";
-import { cleanGitHubDescription as M, decodeHtmlEntities as D, parseOgTags as G, renderCard as H, renderCardGrid as L, renderCardRow as R, resolveProxy as T } from "./core.js";
-import { jsxs as p, jsx as n } from "react/jsx-runtime";
-import { useState as f, useEffect as u } from "react";
-const w = (e = "both") => e === "none" ? "" : `hover-${e}`, C = ({
-  thumbnail: e,
-  title: a,
-  description: o,
-  icons: s,
-  href: c,
+import { fetchOgMeta as C, cleanGitHubTitle as y, cleanGitHubDescription as j } from "./core.js";
+import { decodeHtmlEntities as R, parseOgTags as U, renderCard as $, renderCardGrid as z, renderCardRow as F, resolveProxy as P } from "./core.js";
+import { jsxs as u, jsx as s } from "react/jsx-runtime";
+import { useState as f, useEffect as k } from "react";
+const O = (r = "both") => r === "none" ? "" : `hover-${r}`, x = ({
+  thumbnail: r,
+  title: o,
+  description: c,
+  icons: n,
+  href: a,
   className: t,
   aspectRatio: d = 1.91,
   hoverEffect: i = "both"
 }) => {
-  const l = { "--og-card-ar": d }, r = !!e, h = /* @__PURE__ */ p("div", { className: "og-card-inner", children: [
-    r ? /* @__PURE__ */ n("div", { className: "og-card-thumbnail", children: typeof e == "string" ? /* @__PURE__ */ n("img", { src: e, alt: a, loading: "lazy" }) : e }) : /* @__PURE__ */ n("div", { className: "og-card-placeholder", children: /* @__PURE__ */ n("span", { className: "og-card-placeholder-title", children: a }) }),
-    r && /* @__PURE__ */ p("div", { className: "og-card-overlay", children: [
-      /* @__PURE__ */ n("h3", { className: "og-card-title", children: a }),
-      o && /* @__PURE__ */ n("p", { className: "og-card-description", children: o }),
-      s && s.length > 0 && /* @__PURE__ */ n("div", { className: "og-card-icons", children: s })
+  const l = { "--og-card-ar": d }, e = !!r, h = /* @__PURE__ */ u("div", { className: "og-card-inner", children: [
+    e ? /* @__PURE__ */ s("div", { className: "og-card-thumbnail", children: typeof r == "string" ? /* @__PURE__ */ s("img", { src: r, alt: o, loading: "lazy" }) : r }) : /* @__PURE__ */ s("div", { className: "og-card-placeholder", children: /* @__PURE__ */ s("span", { className: "og-card-placeholder-title", children: o }) }),
+    e && /* @__PURE__ */ u("div", { className: "og-card-overlay", children: [
+      /* @__PURE__ */ s("h3", { className: "og-card-title", children: o }),
+      c && /* @__PURE__ */ s("p", { className: "og-card-description", children: c }),
+      n && n.length > 0 && /* @__PURE__ */ s("div", { className: "og-card-icons", children: n })
     ] })
-  ] }), m = ["og-card", w(i), t].filter(Boolean).join(" ");
-  return /* @__PURE__ */ n("div", { className: m, children: c ? /* @__PURE__ */ n("a", { className: "og-card-link", href: c, target: "_blank", rel: "noopener noreferrer", style: l, children: h }) : /* @__PURE__ */ n("div", { className: "og-card-link", style: l, children: h }) });
+  ] }), m = ["og-card", O(i), t].filter(Boolean).join(" ");
+  return /* @__PURE__ */ s("div", { className: m, children: a ? /* @__PURE__ */ s("a", { className: "og-card-link", href: a, target: "_blank", rel: "noopener noreferrer", style: l, children: h }) : /* @__PURE__ */ s("div", { className: "og-card-link", style: l, children: h }) });
 }, g = /* @__PURE__ */ new Map();
-function y(e, a) {
-  const [o, s] = f(g.get(e) ?? null), [c, t] = f(!g.has(e)), [d, i] = f(null);
-  return u(() => {
-    if (g.has(e)) {
-      s(g.get(e)), t(!1);
+function G(r, o) {
+  const [c, n] = f(g.get(r) ?? null), [a, t] = f(!g.has(r)), [d, i] = f(null);
+  return k(() => {
+    if (g.has(r)) {
+      n(g.get(r)), t(!1);
       return;
     }
     let l = !1;
-    return t(!0), i(null), N(e, a).then((r) => {
-      l || (g.set(e, r), s(r), t(!1));
-    }).catch((r) => {
-      l || (i(r), t(!1));
+    return t(!0), i(null), C(r, o).then((e) => {
+      l || (g.set(r, e), n(e), t(!1));
+    }).catch((e) => {
+      l || (i(e), t(!1));
     }), () => {
       l = !0;
     };
-  }, [e, a]), { data: o, loading: c, error: d };
+  }, [r, o]), { data: c, loading: a, error: d };
 }
-const O = ({
-  url: e,
-  proxy: a,
-  title: o,
-  description: s,
-  thumbnail: c,
+const D = ({
+  url: r,
+  proxy: o,
+  title: c,
+  description: n,
+  thumbnail: a,
   icons: t,
   className: d,
   aspectRatio: i = 1.91,
   hoverEffect: l = "both"
 }) => {
-  const { data: r, loading: h } = y(e, a);
+  const { data: e, loading: h } = G(r, o);
   if (h) {
-    const v = { "--og-card-ar": i };
-    return /* @__PURE__ */ n("div", { className: ["og-card", "og-card-skeleton", d].filter(Boolean).join(" "), children: /* @__PURE__ */ n("div", { className: "og-card-link", style: v, children: /* @__PURE__ */ n("div", { className: "og-card-inner" }) }) });
+    const b = { "--og-card-ar": i };
+    return /* @__PURE__ */ s("div", { className: ["og-card", "og-card-skeleton", d].filter(Boolean).join(" "), children: /* @__PURE__ */ s("div", { className: "og-card-link", style: b, children: /* @__PURE__ */ s("div", { className: "og-card-inner" }) }) });
   }
-  const m = new URL(e).hostname.replace(/^www\./, "");
-  return /* @__PURE__ */ n(
-    C,
+  const m = new URL(r), v = m.hostname.replace(/^www\./, ""), w = /^(www\.)?github\.com$/.test(m.hostname);
+  let p = c ?? (e == null ? void 0 : e.title) ?? v, N = n ?? (e == null ? void 0 : e.description);
+  return w && (p = c ?? y((e == null ? void 0 : e.title) ?? v, r), N = n ?? (e != null && e.description ? j(e.description) : void 0)), /* @__PURE__ */ s(
+    x,
     {
-      thumbnail: c ?? (r == null ? void 0 : r.image),
-      title: o ?? (r == null ? void 0 : r.title) ?? m,
-      description: s ?? (r == null ? void 0 : r.description),
+      thumbnail: a ?? (e == null ? void 0 : e.image),
+      title: p,
+      description: N,
       icons: t,
-      href: e,
+      href: r,
       className: d,
       aspectRatio: i,
       hoverEffect: l
     }
   );
-}, x = ({
-  children: e,
-  className: a,
-  gap: o = "1rem"
+}, E = ({
+  children: r,
+  className: o,
+  gap: c = "1rem"
 }) => {
-  const s = { gap: o }, c = ["og-card-row", a].filter(Boolean).join(" ");
-  return /* @__PURE__ */ n("div", { className: c, style: s, children: e });
+  const n = { gap: c }, a = ["og-card-row", o].filter(Boolean).join(" ");
+  return /* @__PURE__ */ s("div", { className: a, style: n, children: r });
 };
 export {
-  x as CardRow,
-  C as OgCard,
-  O as OgCardFromUrl,
-  M as cleanGitHubDescription,
-  D as decodeHtmlEntities,
-  N as fetchOgMeta,
-  G as parseOgTags,
-  H as renderCard,
-  L as renderCardGrid,
-  R as renderCardRow,
-  T as resolveProxy,
-  y as useOgMeta
+  E as CardRow,
+  x as OgCard,
+  D as OgCardFromUrl,
+  j as cleanGitHubDescription,
+  R as decodeHtmlEntities,
+  C as fetchOgMeta,
+  U as parseOgTags,
+  $ as renderCard,
+  z as renderCardGrid,
+  F as renderCardRow,
+  P as resolveProxy,
+  G as useOgMeta
 };

@@ -119,6 +119,7 @@ ${i.join(`
 }
 export {
   E as cleanGitHubDescription,
+  R as cleanGitHubTitle,
   f as decodeHtmlEntities,
   G as fetchOgMeta,
   p as parseOgTags,

@@ -17,6 +17,7 @@ export interface CardOptions {
     cleanGitHub?: boolean;
 }
 export declare function cleanGitHubDescription(desc: string): string;
+export declare function cleanGitHubTitle(title: string, url: string): string;
 export declare function renderCard(url: string, meta: OgMeta, opts?: CardOptions): string;
 export declare function renderCardRow(cards: Array<{
     url: string;
