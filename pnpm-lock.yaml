@@ -28,8 +28,8 @@ importers:
         specifier: ^4.3.1
         version: 4.7.0(vite@5.4.21(@types/node@25.3.3)(sass-embedded@1.97.3)(sass@1.97.3))
       cors-prxy:
-        specifier: https://github.com/runsascoded/cors-prxy#92459a8de80d85fc43b59596d1397d3996f8be46
-        version: https://codeload.github.com/runsascoded/cors-prxy/tar.gz/92459a8de80d85fc43b59596d1397d3996f8be46
+        specifier: https://github.com/runsascoded/cors-prxy#c396b8461cd91b8066bff2a1debd2bc9a4905d16
+        version: https://codeload.github.com/runsascoded/cors-prxy/tar.gz/c396b8461cd91b8066bff2a1debd2bc9a4905d16
       sass-embedded:
         specifier: ^1.77.8
         version: 1.97.3
@@ -1259,9 +1259,9 @@ packages:
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
-  cors-prxy@https://codeload.github.com/runsascoded/cors-prxy/tar.gz/92459a8de80d85fc43b59596d1397d3996f8be46:
-    resolution: {tarball: https://codeload.github.com/runsascoded/cors-prxy/tar.gz/92459a8de80d85fc43b59596d1397d3996f8be46}
-    version: 0.1.0-dist.17db8cc
+  cors-prxy@https://codeload.github.com/runsascoded/cors-prxy/tar.gz/c396b8461cd91b8066bff2a1debd2bc9a4905d16:
+    resolution: {tarball: https://codeload.github.com/runsascoded/cors-prxy/tar.gz/c396b8461cd91b8066bff2a1debd2bc9a4905d16}
+    version: 0.1.0-dist.eb7da7c
     engines: {node: '>=20'}
     hasBin: true
 
@@ -3334,7 +3334,7 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
-  cors-prxy@https://codeload.github.com/runsascoded/cors-prxy/tar.gz/92459a8de80d85fc43b59596d1397d3996f8be46:
+  cors-prxy@https://codeload.github.com/runsascoded/cors-prxy/tar.gz/c396b8461cd91b8066bff2a1debd2bc9a4905d16:
     dependencies:
       '@aws-sdk/client-cloudwatch-logs': 3.1004.0
       '@aws-sdk/client-iam': 3.1004.0
