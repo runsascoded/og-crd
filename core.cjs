@@ -1,0 +1,15 @@
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});function h(n,t){return t?typeof t=="function"?t(n):`${t}${encodeURIComponent(n)}`:n}const $={"&amp;":"&","&lt;":"<","&gt;":">","&quot;":'"',"&#39;":"'","&apos;":"'"},w=/&(?:amp|lt|gt|quot|#39|apos);/g;function f(n){return n.replace(w,t=>$[t]??t)}function p(n,t){const e=[/<link[^>]+rel=["']apple-touch-icon["'][^>]+href=["']([^"']+)["']/i,/<link[^>]+rel=["']icon["'][^>]+type=["']image\/png["'][^>]+href=["']([^"']+)["']/i,/<link[^>]+rel=["']icon["'][^>]+href=["']([^"']+)["']/i];for(const r of e){const c=n.match(r);if(c){const o=c[1];if(/^https?:\/\//.test(o))return o;const a=new URL(t);return new URL(o,a).href}}}function T(n){const t=n.match(/<title[^>]*>([^<]+)<\/title>/i);return t?f(t[1].trim()):void 0}function g(n,t){const e=o=>{const a=new RegExp(`<meta[^>]+property=["']og:${o}["'][^>]+content=["']([^"']+)["']`,"i"),i=n.match(a);if(i)return f(i[1]);const s=new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:${o}["']`,"i"),l=n.match(s);return l?f(l[1]):void 0},r=e("title")??T(n),c=e("image")??(t?p(n,t):void 0);return{title:r,description:e("description"),image:c,siteName:e("site_name"),url:e("url")}}async function H(n,t){const e=await fetch(h(n,t));return g(await e.text(),n)}const E=[/^Contribute to .+ on GitHub\.?$/i,/\.?\s*Contribute to .+ on GitHub\.?$/i,/^GitHub - [^:]+: /,/ - [A-Za-z0-9-]+\/[A-Za-z0-9._-]+$/],G=/^GitHub - /;function m(n){let t=n.trim();for(const e of E)e.test(t)&&(t=t.replace(e,""));return t.trim()}function R(n,t){var c;let e=n.replace(G,"");const r=t.match(/github\.com\/([^/]+)\/([^/]+)/);if(r){const o=`${r[1]}/${r[2]}`,a=new RegExp(`^${r[1].replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}/[^:]+:\\s*`);if(e.startsWith(`${o}: `))e=r[2];else if(e===o)e=r[2];else if(a.test(e)){const i=(c=e.match(/^[^/]+\/([^:]+)/))==null?void 0:c[1];i&&(e=i)}}return e.trim()}function u(n){return n.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}function d(n,t,e){const r=(e==null?void 0:e.width)??400,c=(e==null?void 0:e.showTitle)??!0,o=(e==null?void 0:e.showDesc)??!0,a=(e==null?void 0:e.cleanGitHub)??!0;let i=t.title??"",s=t.description??"";a&&/github\.com/.test(n)&&(i&&(i=R(i,n)),s&&(s=m(s)));const l=[];t.image&&l.push(`<img src="${u(t.image)}" alt="${u(i)}" width="${r}">`),c&&i&&l.push(`<br><b>${u(i)}</b>`),o&&s&&l.push(`<br><sub>${u(s)}</sub>`);const b=l.join(`
+`);return`<td width="${r}" valign="top">
+<a href="${u(n)}">
+${b}
+</a>
+</td>`}function C(n,t){return`<table><tr>
+${n.map(r=>d(r.url,r.meta,t)).join(`
+`)}
+</tr></table>`}function v(n,t){const e=(t==null?void 0:t.cols)??2,r=[];for(let c=0;c<n.length;c+=e){const a=n.slice(c,c+e).map(i=>d(i.url,i.meta,t));r.push(`<tr>
+${a.join(`
+`)}
+</tr>`)}return`<table>
+${r.join(`
+`)}
+</table>`}exports.cleanGitHubDescription=m;exports.decodeHtmlEntities=f;exports.fetchOgMeta=H;exports.parseOgTags=g;exports.renderCard=d;exports.renderCardGrid=v;exports.renderCardRow=C;exports.resolveProxy=h;

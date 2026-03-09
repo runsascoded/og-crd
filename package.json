@@ -1,48 +1,27 @@
 {
   "name": "og-crd",
-  "version": "0.0.1",
+  "version": "0.0.1-dist.4aeb7d3",
   "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./index.cjs",
+  "module": "./index.js",
+  "types": "./index.d.ts",
   "bin": {
-    "og-card": "dist/cli.js"
+    "og-card": "./cli.js"
   },
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
+      "import": "./index.js",
+      "require": "./index.cjs",
+      "types": "./index.d.ts"
     },
     "./core": {
-      "import": "./dist/core.js",
-      "types": "./dist/core.d.ts"
+      "import": "./core.js",
+      "types": "./core.d.ts"
     },
-    "./style.css": "./dist/style.css"
-  },
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsc -b && vite build",
-    "clean": "rm -rf node_modules/.vite dist",
-    "build:watch": "vite build --watch",
-    "demo:build": "vite build --config demo/vite.config.ts demo",
-    "dev": "vite",
-    "tc": "tsc"
+    "./style.css": "./style.css"
   },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
-  },
-  "devDependencies": {
-    "@types/node": "^25.3.3",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "sass-embedded": "^1.77.8",
-    "typescript": "^5.5.3",
-    "vite": "^5.4.11",
-    "vite-plugin-dts": "^4.0.0"
   }
 }
