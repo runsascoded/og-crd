@@ -97,7 +97,7 @@ Fetches OG metadata from a URL and renders an `OgCard`. Shows a skeleton loading
 />
 ```
 
-A `proxy` is needed in browsers due to CORS. Pass a prefix string (the target URL is appended URL-encoded) or a `(url: string) => string` function. See [`cors-prxy`] for an easy-to-deploy per-project Lambda proxy.
+A `proxy` is needed in browsers due to CORS. Pass a prefix string (the target URL is appended URL-encoded) or a `(url: string) => string` function. See [`cors-prxy`] for an easy-to-deploy per-project CORS proxy.
 
 GitHub URLs are automatically cleaned: `OgCardFromUrl` strips "GitHub - owner/repo:" title prefixes and "Contribute to … on GitHub" description boilerplate.
 
@@ -265,7 +265,7 @@ Override CSS custom properties on `.og-card`:
 
 ## CORS proxy
 
-`OgCardFromUrl` fetches pages client-side, so a CORS proxy is needed. This project uses [`cors-prxy`] to deploy a per-project Lambda proxy with a strict allowlist:
+`OgCardFromUrl` fetches pages client-side, so a CORS proxy is needed. This project uses [`cors-prxy`] to deploy a per-project proxy (Cloudflare Worker or Lambda) with a strict allowlist:
 
 ```json
 {
@@ -285,7 +285,7 @@ Override CSS custom properties on `.og-card`:
 
 ```sh
 pnpm add -D cors-prxy
-cors-prxy deploy   # creates Lambda + Function URL
+cors-prxy deploy   # creates Cloudflare Worker (or Lambda)
 cors-prxy status   # shows endpoint URL
 ```
 

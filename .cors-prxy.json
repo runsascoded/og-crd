@@ -1,6 +1,5 @@
 {
   "name": "og-crd",
-  "region": "us-east-1",
   "allow": [
     { "domain": "github.com", "paths": [
       "/runsascoded/*",
