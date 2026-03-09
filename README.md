@@ -1,6 +1,11 @@
 # og-crd
 
-React components for rendering Open Graph preview cards, plus a CLI and core library for fetching/parsing OG metadata.
+OG meta preview cards for **web** and **markdown**:
+
+- **[React components](#components)** — interactive cards with hover effects, favicons, and automatic GitHub title/description cleaning ([demo][demo])
+- **[CLI](#cli)** — generate `<table>`-based HTML cards for [GitHub READMEs](#og-card-md--github-compatible-markdown-cards), or fetch OG metadata as JSON
+
+[demo]: https://og-crd.rbw.sh
 
 ## Install
 

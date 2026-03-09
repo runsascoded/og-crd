@@ -105,7 +105,7 @@ export function cleanGitHubDescription(desc: string): string {
   return cleaned.trim()
 }
 
-function cleanGitHubTitle(title: string, url: string): string {
+export function cleanGitHubTitle(title: string, url: string): string {
   let cleaned = title.replace(GITHUB_TITLE_PREFIX, "")
   // "owner/repo: description" → just "repo" (repo name may differ from URL slug)
   const ghMatch = url.match(/github\.com\/([^/]+)\/([^/]+)/)

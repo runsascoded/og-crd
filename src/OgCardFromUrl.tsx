@@ -1,4 +1,5 @@
 import { CSSProperties, FC } from "react"
+import { cleanGitHubDescription, cleanGitHubTitle } from "./core"
 import { OgCard } from "./OgCard"
 import { OgCardFromUrlProps } from "./types"
 import { useOgMeta } from "./useOgMeta"
@@ -27,13 +28,22 @@ export const OgCardFromUrl: FC<OgCardFromUrlProps> = ({
     )
   }
 
-  const hostname = new URL(url).hostname.replace(/^www\./, "")
+  const parsed = new URL(url)
+  const hostname = parsed.hostname.replace(/^www\./, "")
+  const isGitHub = /^(www\.)?github\.com$/.test(parsed.hostname)
+
+  let resolvedTitle = title ?? data?.title ?? hostname
+  let resolvedDesc = description ?? data?.description
+  if (isGitHub) {
+    resolvedTitle = title ?? cleanGitHubTitle(data?.title ?? hostname, url)
+    resolvedDesc = description ?? cleanGitHubDescription(data?.description)
+  }
 
   return (
     <OgCard
       thumbnail={thumbnail ?? data?.image}
-      title={title ?? data?.title ?? hostname}
-      description={description ?? data?.description}
+      title={resolvedTitle}
+      description={resolvedDesc}
       icons={icons}
       href={url}
       className={className}
