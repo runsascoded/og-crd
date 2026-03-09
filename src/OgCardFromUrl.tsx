@@ -36,7 +36,7 @@ export const OgCardFromUrl: FC<OgCardFromUrlProps> = ({
   let resolvedDesc = description ?? data?.description
   if (isGitHub) {
     resolvedTitle = title ?? cleanGitHubTitle(data?.title ?? hostname, url)
-    resolvedDesc = description ?? cleanGitHubDescription(data?.description)
+    resolvedDesc = description ?? (data?.description ? cleanGitHubDescription(data.description) : undefined)
   }
 
   return (
