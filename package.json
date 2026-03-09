@@ -1,6 +1,15 @@
 {
   "name": "og-crd",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "description": "OG meta preview cards for web and markdown",
+  "license": "MIT",
+  "author": "Ryan Williams <ryan@runsascoded.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/runsascoded/og-crd.git"
+  },
+  "homepage": "https://og-crd.rbw.sh",
+  "keywords": ["og", "opengraph", "card", "preview", "react", "cli", "markdown", "github"],
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
