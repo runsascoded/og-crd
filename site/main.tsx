@@ -1,6 +1,7 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
-import { OgCardFromUrl, CardRow } from "../src"
+import { OgCardFromUrl, CardRow } from "og-crd"
+import "og-crd/style.css"
 
 const PROXY = import.meta.env.VITE_CORS_PROXY_URL ?? ""
 

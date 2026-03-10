@@ -4,8 +4,6 @@ import { resolve } from 'path'
 import { defineConfig, Plugin } from 'vite'
 import dts from 'vite-plugin-dts'
 
-const allowedHosts = process.env.VITE_ALLOWED_HOSTS?.split(',') ?? []
-
 function cliBanner(): Plugin {
   return {
     name: 'cli-banner',
@@ -20,47 +18,34 @@ function cliBanner(): Plugin {
   }
 }
 
-export default defineConfig(({ command }) => {
-  if (command === 'serve') {
-    return {
-      root: 'demo',
-      plugins: [react()],
-      server: {
-        port: 3847,
-        host: true,
-        allowedHosts,
+export default defineConfig({
+  plugins: [
+    react(),
+    dts({ insertTypesEntry: true }),
+    cliBanner(),
+  ],
+  build: {
+    lib: {
+      entry: {
+        index: resolve(__dirname, 'src/index.ts'),
+        core: resolve(__dirname, 'src/core.ts'),
+        cli: resolve(__dirname, 'src/cli.ts'),
       },
-    }
-  }
-  return {
-    plugins: [
-      react(),
-      dts({ insertTypesEntry: true }),
-      cliBanner(),
-    ],
-    build: {
-      lib: {
-        entry: {
-          index: resolve(__dirname, 'src/index.ts'),
-          core: resolve(__dirname, 'src/core.ts'),
-          cli: resolve(__dirname, 'src/cli.ts'),
-        },
-        formats: ['es', 'cjs'],
-      },
-      rollupOptions: {
-        external: [
-          'react', 'react-dom', 'react/jsx-runtime',
-          /^node:/,
-        ],
-        output: {
-          globals: {
-            react: 'React',
-            'react-dom': 'ReactDOM',
-            'react/jsx-runtime': 'jsxRuntime',
-          },
-        },
-      },
-      cssCodeSplit: false,
+      formats: ['es', 'cjs'],
     },
-  }
+    rollupOptions: {
+      external: [
+        'react', 'react-dom', 'react/jsx-runtime',
+        /^node:/,
+      ],
+      output: {
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'jsxRuntime',
+        },
+      },
+    },
+    cssCodeSplit: false,
+  },
 })
