@@ -32,7 +32,7 @@ og-card md https://github.com/runsascoded/img-voronoi https://github.com/hudcost
 
 ### Web — React components ([demo][demo])
 
-<a href="https://og-crd.rbw.sh"><img src="demo/screenshot.png" alt="demo screenshot" width="600"></a>
+<a href="https://og-crd.rbw.sh"><img src="site/public/og.jpg" alt="demo screenshot" width="600"></a>
 
 Interactive cards with hover effects, favicons, and automatic GitHub title/description cleaning.
 
@@ -296,10 +296,10 @@ The endpoint URL is set as `VITE_CORS_PROXY_URL` (env var for local dev, [GitHub
 ## Development
 
 ```sh
-pnpm dev          # Demo site at localhost:3847
-pnpm build        # Library build → dist/
-pnpm build:watch  # Rebuild on changes
-pnpm demo:build   # Production demo build → demo/dist/
+pnpm build         # Library build → dist/
+pnpm build:watch   # Rebuild on changes
+pnpm -F site dev   # Demo site at localhost:56741
+pnpm -F site build # Production demo build → site/dist/
 ```
 
 [demo]: https://og-crd.rbw.sh
